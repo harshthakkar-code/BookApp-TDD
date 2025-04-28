@@ -1,103 +1,118 @@
-# Book Management System - Backend
+# Backend - Book Management System
 
-This is the backend service for the Book Management System, built with Node.js, Express, and TypeScript.
+The backend of the Book Management System is built with Node.js and Express, providing a RESTful API for book management.
 
-## Features
+## Technologies Used
 
-- RESTful API for managing books
-- In-memory storage (can be extended to use a database)
-- TypeScript for type safety
-- Jest for testing
-- Express.js for routing
-
-## API Endpoints
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/books` | POST | Add a new book |
-| `/books` | GET | Retrieve all books |
-| `/books/:isbn` | GET | Retrieve a specific book by ISBN |
-| `/books/:isbn` | PUT | Update an existing book |
-| `/books/:isbn` | DELETE | Delete a book by ISBN |
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-
-### Installation
-
-1. Clone the repository
-2. Navigate to the backend directory:
-   ```bash
-   cd book-management-system/backend
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-### Running the Application
-
-Development mode:
-```bash
-npm run dev
-```
-
-Production mode:
-```bash
-npm run build
-npm start
-```
-
-### Running Tests
-
-```bash
-npm test
-```
-
-To run tests in watch mode:
-```bash
-npm run test:watch
-```
+- Node.js
+- Express.js
+- MongoDB (or your preferred database)
+- Mongoose (for MongoDB)
+- JWT for authentication
+- Express Validator
 
 ## Project Structure
 
 ```
 backend/
 ├── src/
-│   ├── controllers/
-│   ├── routes/
-│   ├── services/
-│   │   └── bookService.ts
-│   ├── models/
-│   │   └── book.ts
-│   ├── app.ts
-│   └── server.ts
-├── tests/
-│   ├── models/
-│   │   └── book.test.ts
-│   ├── services/
-│   │   └── bookService.test.ts
-│   └── routes/
-│       └── bookRoutes.test.ts
-├── package.json
-└── tsconfig.json
+│   ├── controllers/   # Request handlers
+│   ├── models/        # Database models
+│   ├── routes/        # API routes
+│   ├── middleware/    # Custom middleware
+│   ├── config/        # Configuration files
+│   ├── utils/         # Utility functions
+│   └── app.js         # Main application file
+├── tests/             # Test files
+└── package.json       # Project dependencies
 ```
 
-## Design Decisions
+## Getting Started
 
-1. **TypeScript**: Used for better type safety and developer experience
-2. **In-Memory Storage**: Used Map for simplicity, can be replaced with a database
-3. **TDD Approach**: All features are developed using Test-Driven Development
-4. **Express.js**: Lightweight and flexible web framework
-5. **Jest**: Popular testing framework with good TypeScript support
+### Prerequisites
 
-## Error Handling
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB (or your preferred database)
 
-- 400 Bad Request: Invalid input data
-- 404 Not Found: Book not found
-- 200 OK: Successful operation
-- 201 Created: Book created successfully 
+### Installation
+
+1. Navigate to the backend directory:
+```bash
+cd backend
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create a `.env` file in the backend directory with the following variables:
+```
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/book-management
+JWT_SECRET=your-secret-key
+```
+
+4. Start the development server:
+```bash
+npm start
+```
+
+The API will be available at `http://localhost:5000`
+
+## API Endpoints
+
+### Books
+
+- `GET /api/books` - Get all books
+- `GET /api/books/:id` - Get a specific book
+- `POST /api/books` - Create a new book
+- `PUT /api/books/:id` - Update a book
+- `DELETE /api/books/:id` - Delete a book
+
+### Authentication
+
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - Login user
+- `GET /api/auth/me` - Get current user
+
+## Database Schema
+
+### Book
+```javascript
+{
+  title: String,
+  author: String,
+  description: String,
+  publishedYear: Number,
+  isbn: String,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+## Testing
+
+Run the test suite:
+```bash
+npm test
+```
+
+## Security
+
+- JWT-based authentication
+- Password hashing
+- Input validation
+- CORS configuration
+- Rate limiting
+
+## Contributing
+
+1. Create a new branch for your feature
+2. Make your changes
+3. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License. 
